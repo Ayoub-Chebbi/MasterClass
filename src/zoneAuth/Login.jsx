@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import register from "../assets/register.jpg?url";
-import { Lock } from "lucide-react";
+import { Lock , Eye , EyeOff } from "lucide-react";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target[0].value);
-    console.log(e.target[1].value);
-    console.log(e.target[2].value);
+    
   }
-
+const handleShowPassword = () => {
+  setShowPassword(!showPassword)
+}
   return (
     <div
       className=" relative h-screen bg-cover bg-center"
@@ -34,14 +35,19 @@ function Login() {
                 className="w-full border px-1 border-blue-600 rounded"
               />
             </div>
-            <div>
+            <div className="relative">
               <label htmlFor="" className="block">
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="w-full border border-blue-600 rounded px-1"
               />
+              <div className="absolute top-7 right-4">
+                <button onClick={handleShowPassword} type="button">
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18}/>}
+                </button>
+              </div>
             </div>
             <div className="flex justify-end mt-4 gap-1">
               <button
